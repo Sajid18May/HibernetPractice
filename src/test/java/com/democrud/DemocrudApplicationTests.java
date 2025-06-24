@@ -109,6 +109,51 @@ class DemocrudApplicationTests {
 		}
 		}
 	}
+	@Test
+	void SearchEmpByEmail() {
+		Optional<Employee> emp=er.searchEmployeeByEmail("adam@gmail.com");
+		if(emp.isPresent()) {
+			System.out.println(emp.get().getName());
+		}else {
+			System.out.println("No Employee found");
+		}
+	}
+	
+	@Test
+	void SearchEmpByEmailAndName() {
+		Optional<Employee> emp=er.searchEmployeeByEmailAndName("adam@gmail.com","adam");
+		if(emp.isPresent()) {
+			System.out.println(emp.get().getName());
+			System.out.println(emp.get().getEmail());
+			System.out.println(emp.get().getMobile());
+		}else {
+			System.out.println("No Employee found");
+		}
+	}
+	
+	@Test
+	void SearchEmpByEmailSQL() {
+		Optional<Employee> emp=er.searchEmployeeByEmailsql("adam@gmail.com");
+		if(emp.isPresent()) {
+			System.out.println(emp.get().getName());
+		}else {
+			System.out.println("No Employee found");
+		}
+	}
+	
+	@Test
+	void SearchEmpByEmailorNameSQL() {
+		List <Employee> emp=er.searchEmployeeByEmailOrNameSQL("adam@gmail.com","mike");
+		for(Employee e:emp) {
+		if(e!=null) {
+			System.out.println(e.getName());
+			System.out.println(e.getEmail());
+			System.out.println(e.getMobile());
+		}else {
+			System.out.println("No Employee found");
+		}
+		}
+	}
 	
 
 }
